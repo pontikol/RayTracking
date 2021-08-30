@@ -13,7 +13,7 @@ class int2
 
 class Screen
 {
-	int2 pixelSize;
+	int2 matrixSize;
 	float3 screenSize;
 //	std::vector<std::vector<Color>> matrix;
 	public:
@@ -24,6 +24,8 @@ class Screen
 	Screen(int I, int J, float X, float Y, float z);
 	float3 pixel2point(const int i, const int j);
 	int2 point2pixel(const float x, const float y);
+	
+	int2 GetMatrixSize(){return matrixSize;}
 };
 
 
