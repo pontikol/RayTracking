@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o readerBMP.o float3.o camera.o color.o sphere.o screen.o
-LINKOBJ  = main.o readerBMP.o float3.o camera.o color.o sphere.o screen.o
+OBJ      = main.o readerBMP.o float3.o camera.o color.o sphere.o screen.o cube.o triangle.o modelSTL.o object3d.o ray.o plane.o
+LINKOBJ  = main.o readerBMP.o float3.o camera.o color.o sphere.o screen.o cube.o triangle.o modelSTL.o object3d.o ray.o plane.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -44,3 +44,21 @@ sphere.o: sphere.cpp
 
 screen.o: screen.cpp
 	$(CPP) -c screen.cpp -o screen.o $(CXXFLAGS)
+
+cube.o: cube.cpp
+	$(CPP) -c cube.cpp -o cube.o $(CXXFLAGS)
+
+triangle.o: triangle.cpp
+	$(CPP) -c triangle.cpp -o triangle.o $(CXXFLAGS)
+
+modelSTL.o: modelSTL.cpp
+	$(CPP) -c modelSTL.cpp -o modelSTL.o $(CXXFLAGS)
+
+object3d.o: object3d.cpp
+	$(CPP) -c object3d.cpp -o object3d.o $(CXXFLAGS)
+
+ray.o: ray.cpp
+	$(CPP) -c ray.cpp -o ray.o $(CXXFLAGS)
+
+plane.o: plane.cpp
+	$(CPP) -c plane.cpp -o plane.o $(CXXFLAGS)

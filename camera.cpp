@@ -2,6 +2,7 @@
 #include "sphere.h"
 #include "triangle.h"
 #include "modelSTL.h"
+#include "plane.h"
 #define M_PI 3.14159265358979323846
 
 void Camera::Render(std::string name)
@@ -21,15 +22,16 @@ void Camera::Render(std::string name)
 	
 	Sphere sphere1(0.2f, float3(0.0f, 0.0f, 2.0f), Color(1.f, 1.f, 0.f, 1.f));
 	Sphere sphere2(0.2f, float3(0.2f, 0.2f, 1.5f), Color(0.f, 1.f, 1.f, 1.f));
-	Sphere sphere3(0.2f, float3(-0.1f, 0.3f, 1.7f), Color(1.f, 0.f, 1.f, 1.f));
+	//Sphere sphere3(0.2f, float3(-0.1f, 0.3f, 1.7f), Color(1.f, 0.f, 1.f, 1.f));
+	Sphere sphere3(0.2f, float3(0.f, 0.1f, 2.f), Color(1.f, 0.f, 1.f, 1.f));
 	
 	/*sphere1.SetColor(Color(1.f, 1.f, 0.f, 1.f));
 	sphere2.SetColor(Color(0.f, 1.f, 1.f, 1.f));
 	sphere1.SetColor(Color(1.f, 0.f, 1.f, 1.f));*/
 	
-	object3d.push_back(&sphere2);
-	object3d.push_back(&sphere1);
-	object3d.push_back(&sphere3);
+	//object3d.push_back(&sphere2);
+	//object3d.push_back(&sphere1);
+	//object3d.push_back(&sphere3);
 	ModelSTL model;
 	
 	model.addTriangle(	Triangle(float3(-1, -1, 1), float3(-1, 1, 1), float3(1, 1, 1), Color(0.f, 0.f, 1.f, 1.f)));
@@ -59,7 +61,7 @@ void Camera::Render(std::string name)
 	model.rotate(30 * M_PI / 180, 30 * M_PI / 180.f, 30 * M_PI / 180.f);
 	model.move(float3(-0.2f, -0.2f, 2.f));
 	model.calSize();
-	object3d.push_back(&model);
+	//object3d.push_back(&model);
 	
 	ModelSTL model2;
 	
@@ -73,8 +75,37 @@ void Camera::Render(std::string name)
 	model2.rotate(30 * M_PI / 180, 30 * M_PI / 180.f, 30 * M_PI / 180.f);
 	model2.move(float3(+0.2f, -0.2f, 2.f));
 	model2.calSize();
-	object3d.push_back(&model2);
+	//object3d.push_back(&model2);
 	
+	Plane plane1(float3(0.f, -0.3f, 0.f), float3(0.f, 1.f, 0.f));
+	plane1.SetColor(Color(0.4f, 0.7f, 0.8f, 1.f));
+	
+	Plane plane2(float3(0.3f, 0.f, 0.f), float3(-1.f, 0.f, 0.f));
+	plane2.SetColor(Color(0.2f, 1.f, 0.5f, 1.f));
+	
+	Plane plane3(float3(-0.3f, 0.f, 0.f), float3(1.f, 0.f, 0.f));
+	plane3.SetColor(Color(0.2f, 0.6f, 1.f, 1.f));
+	
+	Plane plane4(float3(0.f, 0.f, 3.f), float3(0.f, 0.f, -1.f));
+	plane4.SetColor(Color(1.f, 1.f, 1.f, 1.f));
+
+	Plane plane5(float3(0.f, 0.3f, 0.f), float3(0.f, -1.f, 0.f));
+	plane5.SetColor(Color(0.7f, 0.2f, 0.2f, 1.f));
+	
+	Plane plane6(float3(0.f, 0.f, 0.f), float3(0.f, 0.f, 1.f));
+	plane6.SetColor(Color(0.3f, 0.4f, 1.f, 1.f));
+	
+	object3d.push_back(&plane1);
+	object3d.push_back(&plane2);
+	object3d.push_back(&plane3);
+	object3d.push_back(&plane4);
+	object3d.push_back(&plane5);
+	object3d.push_back(&plane6);
+	//object3d.push_back(&model);
+	object3d.push_back(&model2);
+	//object3d.push_back(&sphere2);
+	//object3d.push_back(&sphere1);
+	//object3d.push_back(&sphere3);
 	
 			
 	for(int i = 0; i < I; i++ )
@@ -83,7 +114,7 @@ void Camera::Render(std::string name)
 		{
 			
 			screen.matrix[i][j] = Color(0.f, 0.f, 0.f, 1.f);
-			
+		//	std::cout << i << "\t" << j << std::endl;
 			Ray ray;
 			ray.origin = screen.pixel2point(i, j);
 			ray.direction = normalize(zero - ray.origin); 
@@ -97,7 +128,7 @@ void Camera::Render(std::string name)
 			
 			rays.push_back(next);
 			
-			for(int k = 0; k < 4; k++)
+			for(int k = 0; k < 8; k++)
 			{
 				if(rays.back().isEnd) break;
 				Ray temp = CalRay(rays.back(), rays.back().object);	
